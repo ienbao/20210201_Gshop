@@ -32,7 +32,7 @@
                   </div>
                   <div class="price">
                     <span class="now">￥{{ food.price }}</span>
-                    <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+                    <span class="old" v-if="food.oldPrice">￥{{ food.oldPrice }}</span>
                   </div>
                   <div class="cartcontrol-wrapper">
                     <CartControl :food="food"/>
@@ -43,7 +43,7 @@
           </li>
         </ul>
       </div>
-      <ShopCart />
+      <ShopCart/>
     </div>
     <Food :food="food" ref="food"/>
   </div>
@@ -52,9 +52,9 @@
 <script>
 import BScroll from 'better-scroll'
 import {mapState} from 'vuex'
-import CartControl from '../../../components/CartControl/CartControl'
-import Food from '../../../components/Food/Food'
-import ShopCart from '../../../components/ShopCart/ShopCart'
+import CartControl from '../../../components/CartControl/CartControl.vue'
+import Food from '../../../components/Food/Food.vue'
+import ShopCart from '../../../components/ShopCart/ShopCart.vue'
 
 export default {
   data () {
@@ -71,11 +71,6 @@ export default {
         this._initTops()
       })
     })
-  },
-  components: {
-    CartControl,
-    Food,
-    ShopCart
   },
   computed: {
     ...mapState(['goods']),
@@ -98,7 +93,7 @@ export default {
     // 初始化滚动
     _initScroll () {
       // 列表显示之后创建
-      /* eslint-disable no-new */
+      /* eslint-disable */
       new BScroll('.menu-wrapper', {
         click: true
       })
@@ -156,6 +151,12 @@ export default {
       // 显示food组件 (在父组件中调用子组件对象的方法)
       this.$refs.food.toggleShow()
     }
+  },
+
+  components: {
+    CartControl,
+    Food,
+    ShopCart
   }
 }
 </script>
@@ -225,6 +226,7 @@ export default {
       display: flex
       margin: 18px
       padding-bottom: 18px
+
       &:last-child
         border-none()
         margin-bottom: 0
@@ -270,9 +272,8 @@ export default {
             font-size: 10px
             color: rgb(147, 153, 159)
 
-          .cartcontrol-wrapper
-            position: absolute
-            width : 40px
-            right: 0px
-            bottom: 12px
+        .cartcontrol-wrapper
+          position: absolute
+          right: 0
+          bottom: 12px
 </style>
